@@ -7,13 +7,17 @@
 </head>
 <body>
 
+    <%-  include('common/header') %>
     <div  style="color: chocolate;text-align: center; justify-content: center;">
 
         <small> welcome <%=data.name %></small><br>
         <small> age <%=data.age %></small><br>
         <small> email <%=data.email %></small>
-        
-
+        <% data.skill.forEach((item)=>{ %>
+          <li><%= item %></li>
+           <% }) %>
     </div>
+
+    <%-  include('common/footer') %>
 </body>
 </html>

@@ -9,9 +9,14 @@ app.get("/profile", (req, res)=>{
     const data ={
         name:"Nilesh",
         age:30,
-        email:"thakren76@gmail.com"
+        email:"thakren76@gmail.com",
+        skill:["java", "node", "html" , "Angular ", "oops"]
     }
     res.render('profile',{data} )
+})
+
+app.get("/login", (req,res)=>{
+    res.render('login')
 })
 
 app.get("", (req, res)=>{
