@@ -1,36 +1,30 @@
+// what is middeleware = this are function   is used to handle req, and responce of routing 
+
 const express = require('express')
-const app =express()
-const path=require('path');
-const dirPath = path.join(__dirname,'public')
+const app = express()
+ const filter= require('./middlewere')
+const rout = express.Router()
 
-app.set('view engine', 'ejs')
+//app.use(filter)
 
-app.get("/profile", (req, res)=>{
-    const data ={
-        name:"Nilesh",
-        age:30,
-        email:"thakren76@gmail.com",
-        skill:["java", "node", "html" , "Angular ", "oops"]
-    }
-    res.render('profile',{data} )
+rout.use(filter)
+app.get("/profile", (req,res)=>{
+    res.send(" welcome profile")
 })
 
-app.get("/login", (req,res)=>{
-    res.render('login')
+app.get("/login",(req,res)=>{
+    res.send("welcome login")
 })
 
-app.get("", (req, res)=>{
-    res.sendFile(`${dirPath}/index.html`)
-})
-app.get("/co", (req,res)=>{
-    res.sendFile(`${dirPath}/contact.html`)
-})
-app.get("/ab", (req,res)=>{
-    res.sendFile(`${dirPath}/about.html`)
-})
-app.get("*", (req,res)=>{
-    res.sendFile(`${dirPath}/page.html`)
+rout.get("/co", (req,res)=>{
+    res.send(`<h1>contact us page</h1>`)
 })
 
-app.listen(4000)
-
+rout.get("/ab", (req,res)=>{
+    res.send(`<h1>about us page</h1>`)
+})
+rout.get("/o", (req,res)=>{
+    res.send(`<h1>o us page</h1>`)
+})
+app.use("/", rout)
+app.listen(2000)
