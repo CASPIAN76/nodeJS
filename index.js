@@ -1,30 +1,14 @@
-// what is middeleware = this are function   is used to handle req, and responce of routing 
+const  {MongoClient} = require("mongodb")
+const path= "mongodb://127.0.0.1:27017"
+const client= new MongoClient(path)
 
-const express = require('express')
-const app = express()
- const filter= require('./middlewere')
-const rout = express.Router()
 
-//app.use(filter)
+async function getData(){
 
-rout.use(filter)
-app.get("/profile", (req,res)=>{
-    res.send(" welcome profile")
-})
+    const result = await client.connect()
+  const v1 = await result.db('e-comm').collection('products').find({name:"opp"}).toArray()
+ 
+  console.log(v1, "jhsdj")
+}
 
-app.get("/login",(req,res)=>{
-    res.send("welcome login")
-})
-
-rout.get("/co", (req,res)=>{
-    res.send(`<h1>contact us page</h1>`)
-})
-
-rout.get("/ab", (req,res)=>{
-    res.send(`<h1>about us page</h1>`)
-})
-rout.get("/o", (req,res)=>{
-    res.send(`<h1>o us page</h1>`)
-})
-app.use("/", rout)
-app.listen(2000)
+getData()
