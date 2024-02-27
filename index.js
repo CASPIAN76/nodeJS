@@ -6,7 +6,7 @@ const client= new MongoClient(path)
 async function getData(){
 
     const result = await client.connect()
-  const v1 = await result.db('e-comm').collection('products').find({name:"opp"}).toArray()
+  const v1 = await result.db('e-comm').collection('products').find({}).toArray()
  
   console.log(v1, "jhsdj")
 }
