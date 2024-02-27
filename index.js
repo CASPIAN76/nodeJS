@@ -1,17 +1,18 @@
 
   const connectDb = require('./dbConnection')
- const insert = require('./insertData')
+const update = require('./update')
 
 const main= async()=>{
  
 
   let result =  await connectDb()
   let data = await result.find().toArray()
-  //console.log(data)
+  console.log(data)
 }
 
 
-main()
+//main()
+update()
 
-insert()
+
 
