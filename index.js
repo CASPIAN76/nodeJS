@@ -1,22 +1,24 @@
 
-const connectDb = require('./dbConnection')
-const update = require('./update')
-const dele = require('./delete')
-const insert = require('./insertData')
+const mongoose = require('mongoose');
 
-const main = async () => {
+mongoose.connect('mongodb://127.0.0.1:27017/e-comm')
 
 
-  let result = await connectDb()
-  let data = await result.find().toArray()
-  console.log(data)
+const productSchema= new mongoose.Schema({
+  name:String,
+  price:Number,
+  quantity:Number,
+  quality:String
+})
+
+const main=async()=>{
+
+  const productModel=  mongoose.model("product", productSchema)
+
+  const data= new productModel({name:"laptop", price:200, quantity:500, quality:"good"})
+  const result =await data.save()
+  console.log(result)
+
 }
 
-//insert()
-
-//main()
-//update()
-
-//dele()
-
-
+main()
